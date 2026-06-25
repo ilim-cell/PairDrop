@@ -13,9 +13,11 @@
     Fork of Snapdrop.
     <br>
     <br>
-    <a href="https://github.com/schlagmichdoch/PairDrop/issues">Report a bug</a>
+    <a href="https://github.com/ilim-cell/PairDrop/issues">Report a bug</a>
     <br />
-    <a href="https://github.com/schlagmichdoch/PairDrop/issues">Request feature</a>
+    <a href="https://github.com/ilim-cell/PairDrop/issues">Request feature</a>
+    <br />
+    <a href="https://github.com/ilim-cell/PairDrop/pulls">Pull requests</a>
   </p>
 </div>
 <br>
@@ -34,7 +36,7 @@ Send a file from your phone to your laptop?
 <br>Share photos in original quality with friends using Android and iOS?
 <br>Share private files peer-to-peer between Linux systems?
 
-<img src="docs/pairdrop_screenshot_mobile.gif" alt="Screenshot GIF showing PairDrop in use" style="width: 300px">
+<img src="docs/pairdrop_screenshot_mobile.gif" alt="An animated screenshot showing PairDrop in use" style="width: 300px">
 
 ## Differences to the [Snapdrop](https://github.com/RobinLinus/snapdrop) it is based on
 <details><summary>View all differences</summary>
@@ -62,7 +64,7 @@ Connect to others in complex network situations, or over the Internet.
 * Enter a public room via a 5-letter code or a QR-code.
 * Enter a public room to temporarily connect to devices outside your local network.
 * All devices in the same public room see each other.
-* Public rooms are temporary. Closing PairDrop  leaves all rooms.
+* Public rooms are temporary. Closing PairDrop leaves all rooms.
 
 ### [Improved UI for Sending/Receiving Files](https://github.com/RobinLinus/snapdrop/issues/560)
 * Files are transferred after a request is accepted. Files are auto-downloaded upon completing a transfer, if possible.
@@ -115,18 +117,6 @@ Connect to others in complex network situations, or over the Internet.
 [FAQ](docs/faq.md)
 
 [Host your own instance with Docker or Node.js](docs/host-your-own.md).
-
-## Support
-<a href="https://www.buymeacoffee.com/pairdrop" target="_blank">
-<img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy me a coffee" style="height: 60px !important;width: 217px !important;" >
-</a>
-<br />
-<br />
-
-PairDrop is libre, and always will be. \
-If you find it useful and want to support free and open-source software, please consider donating using the button above. \
-I footed the bill for the domain and the server, and you can help create and maintain great software by supporting me. \
-Thank you very much for your contribution!
 
 ## Contributing
 Feel free to [open an issue](https://github.com/schlagmichdoch/pairdrop/issues/new/choose) or a
