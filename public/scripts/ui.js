@@ -1391,8 +1391,8 @@ class PairDeviceDialog extends Dialog {
     }
 
     _getPairUrl() {
-        let url = new URL(location.href);
-        url.searchParams.append('pair_key', this.pairKey)
+        const url = new URL(location.pathname, 'https://pairdroptransfer.web.app');
+        url.searchParams.append('pair_key', this.pairKey);
         return url.href;
     }
 
@@ -1788,8 +1788,8 @@ class PublicRoomDialog extends Dialog {
     }
 
     _getShareRoomUrl() {
-        let url = new URL(location.href);
-        url.searchParams.append('room_id', this.roomId)
+        const url = new URL(location.pathname, 'https://pairdroptransfer.web.app');
+        url.searchParams.append('room_id', this.roomId);
         return url.href;
     }
 

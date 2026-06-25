@@ -28,38 +28,43 @@ class ServerConnection {
 
     _getConfig() {
         console.log("Loading config...")
-        return new Promise((resolve, reject) => {
-            let xhr = new XMLHttpRequest();
-            xhr.addEventListener("load", () => {
-                if (xhr.status === 200) {
-                    // Config received
-                    let config = JSON.parse(xhr.responseText);
-                    console.log("Config loaded:", config)
-                    this._config = config;
-                    Events.fire('config', config);
-                    resolve()
-                } else if (xhr.status < 200 || xhr.status >= 300) {
-                    retry(xhr);
-                }
-            })
-
-            xhr.addEventListener("error", _ => {
-                retry(xhr);
+        return this._fetchConfig('config')
+            .catch(() => this._fetchConfig('rtc_config.json'))
+            .catch(() => {
+                const fallbackConfig = {
+                    signalingServer: '',
+                    sdpSemantics: 'unified-plan',
+                    iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }]
+                };
+                console.log("Using fallback config:", fallbackConfig);
+                this._config = fallbackConfig;
+                Events.fire('config', fallbackConfig);
             });
+    }
 
-            function retry(request) {
-                setTimeout(function () {
-                    openAndSend(request)
-                }, 1000)
-            }
-
-            function openAndSend() {
-                xhr.open('GET', 'config');
-                xhr.send();
-            }
-
-            openAndSend(xhr);
-        })
+    _fetchConfig(path) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', path, true);
+            xhr.responseType = 'text';
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    try {
+                        const config = JSON.parse(xhr.responseText);
+                        console.log(`${path} loaded:`, config);
+                        this._config = config;
+                        Events.fire('config', config);
+                        resolve();
+                    } catch (error) {
+                        reject(error);
+                    }
+                } else {
+                    reject(new Error(`Config ${path} returned status ${xhr.status}`));
+                }
+            };
+            xhr.onerror = () => reject(new Error(`Unable to load ${path}`));
+            xhr.send();
+        });
     }
 
     _setWsConfig(wsConfig) {
@@ -245,12 +250,28 @@ class ServerConnection {
 
     _endpoint() {
         const protocol = location.protocol.startsWith('https') ? 'wss' : 'ws';
-        // Check whether the instance specifies another signaling server otherwise use the current instance for signaling
-        let wsServerDomain = this._config.signalingServer
-            ? this._config.signalingServer
-            : location.host + location.pathname;
+        let wsUrl;
 
-        let wsUrl = new URL(protocol + '://' + wsServerDomain + 'server');
+        if (this._config.signalingServer) {
+            const signalingServer = this._config.signalingServer.trim();
+            if (/^(ws|wss|http|https):\/\//i.test(signalingServer)) {
+                const parsedUrl = new URL(signalingServer);
+                if (parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:') {
+                    parsedUrl.protocol = protocol + ':';
+                }
+                if (!parsedUrl.pathname || parsedUrl.pathname === '/') {
+                    parsedUrl.pathname = '/server';
+                } else if (!parsedUrl.pathname.endsWith('/server')) {
+                    parsedUrl.pathname = parsedUrl.pathname.replace(/\/$/, '') + '/server';
+                }
+                wsUrl = parsedUrl;
+            } else {
+                const host = signalingServer.replace(/\/$/, '');
+                wsUrl = new URL(`${protocol}://${host}/server`);
+            }
+        } else {
+            wsUrl = new URL(`${protocol}://${location.host}/server`);
+        }
 
         wsUrl.searchParams.append('webrtc_supported', window.isRtcSupported ? 'true' : 'false');
 

@@ -19,7 +19,7 @@
     <meta name="author" content="schlagmichdoch">
     <meta property="og:title" content="PairDrop">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://pairdrop.net/">
+    <meta property="og:url" content="https://pairdroptransfer.web.app/">
     <meta property="og:author" content="https://github.com/schlagmichdoch">
     <meta name="twitter:author" content="@schlagmichdoch">
     <meta name="twitter:card" content="summary_large_image">
@@ -37,6 +37,7 @@
     <!-- Resources -->
     <link rel="preload" href="lang/en.json" as="fetch">
     <link rel="preload" href="fonts/OpenSans/static/OpenSans-Medium.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" />
     <link rel="stylesheet" type="text/css" href="styles/styles-main.css">
     <link rel="manifest" href="manifest.json">
 </head>
@@ -44,63 +45,41 @@
 <body translate="no">
     <header class="row-reverse wrap opacity-0">
         <a href="#about" class="icon-button" data-i18n-key="header.about" data-i18n-attrs="title aria-label">
-            <svg class="icon">
-                <use xlink:href="#info-outline"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">info</span>
         </a>
         <div id="language-selector" class="icon-button" data-i18n-key="header.language-selector" data-i18n-attrs="title">
-            <svg class="icon">
-                <use xlink:href="#icon-language-selector"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">language</span>
         </div>
         <div id="theme-wrapper">
             <div id="theme-auto" class="icon-button selected" data-i18n-key="header.theme-auto" data-i18n-attrs="title">
-                <svg class="icon">
-                    <use xlink:href="#icon-theme-auto"></use>
-                </svg>
+                <span class="material-symbols-rounded icon">brightness_auto</span>
             </div>
             <div>
                 <div id="theme-light" class="icon-button" data-i18n-key="header.theme-light" data-i18n-attrs="title">
-                    <svg class="icon">
-                        <use xlink:href="#icon-theme-light"></use>
-                    </svg>
+                    <span class="material-symbols-rounded icon">light_mode</span>
                 </div>
                 <div id="theme-dark" class="icon-button" data-i18n-key="header.theme-dark" data-i18n-attrs="title">
-                    <svg class="icon">
-                        <use xlink:href="#icon-theme-dark"></use>
-                    </svg>
+                    <span class="material-symbols-rounded icon">dark_mode</span>
                 </div>
             </div>
         </div>
         <div id="notification" class="icon-button" data-i18n-key="header.notification" data-i18n-attrs="title" hidden>
-            <svg class="icon">
-                <use xlink:href="#notifications"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">notifications</span>
         </div>
         <div id="install" class="icon-button" data-i18n-key="header.install" data-i18n-attrs="title" hidden>
-            <svg class="icon">
-                <use xlink:href="#homescreen"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">install_mobile</span>
         </div>
         <div id="pair-device" class="icon-button" data-i18n-key="header.pair-device" data-i18n-attrs="title">
-            <svg class="icon">
-                <use xlink:href="#pair-device-icon"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">device_hub</span>
         </div>
         <div id="edit-paired-devices" class="icon-button" data-i18n-key="header.edit-paired-devices" data-i18n-attrs="title" hidden>
-            <svg class="icon">
-                <use xlink:href="#edit-pair-devices-icon"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">settings</span>
         </div>
         <div id="join-public-room" class="icon-button" data-i18n-key="header.join-public-room" data-i18n-attrs="title">
-            <svg class="icon">
-                <use xlink:href="#public-room-icon"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">groups</span>
         </div>
         <div id="expand" class="icon-button" data-i18n-key="header.expand" data-i18n-attrs="title" hidden>
-            <svg class="icon">
-                <use xlink:href="#caret"></use>
-            </svg>
+            <span class="material-symbols-rounded icon">expand_more</span>
         </div>
     </header>
     <!-- Center -->
@@ -682,7 +661,7 @@
                         <use xlink:href="#donation"></use>
                     </svg>
                 </a>
-                <a class="icon-button" id="x-twitter-btn" target="_blank" href="https://x.com/intent/tweet?text=https%3A%2F%2Fpairdrop.net%20by%20https%3A%2F%2Fgithub.com%2Fschlagmichdoch%2F&amp;" rel="noreferrer" data-i18n-key="about.tweet" data-i18n-attrs="title">
+                <a class="icon-button" id="x-twitter-btn" target="_blank" href="https://x.com/intent/tweet?text=https%3A%2F%2Fpairdroptransfer.web.app%20by%20https%3A%2F%2Fgithub.com%2Fschlagmichdoch%2F&amp;" rel="noreferrer" data-i18n-key="about.tweet" data-i18n-attrs="title">
                     <svg class="icon">
                         <use xlink:href="#x-twitter"></use>
                     </svg>

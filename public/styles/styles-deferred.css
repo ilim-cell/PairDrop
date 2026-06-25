@@ -322,12 +322,13 @@ input:checked + .slider:before {
 /* Dialog */
 
 x-dialog x-background {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(15, 15, 15, 0.64);
+    backdrop-filter: blur(16px);
     z-index: 30;
-    transition: opacity 300ms;
+    transition: opacity 250ms ease;
     will-change: opacity;
-    padding: 10px 5px 20px;
-    overflow: scroll
+    padding: 16px 10px 24px;
+    overflow: auto;
 }
 
 x-dialog x-paper {
@@ -336,22 +337,32 @@ x-dialog x-paper {
     margin: auto;
     flex-direction: column;
     width: 100%;
-    max-width: 450px;
+    max-width: 520px;
     z-index: 3;
-    border-radius: 30px;
+    border-radius: 28px;
     overflow: hidden;
     box-sizing: border-box;
-    transition: transform 300ms;
-    will-change: transform;
+    background: rgba(var(--bg-color), 0.96);
+    border: 1px solid rgba(var(--border-color), 0.16);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+    transition: transform 300ms ease, opacity 300ms ease;
+    transform: translateY(18px);
+}
+
+x-dialog[show] x-paper {
+    transform: translateY(0);
 }
 
 x-paper > .row:first-of-type {
-    background-color: var(--accent-color);
-    margin-bottom: 5px;
+    padding: 20px 18px 10px;
+    background: transparent;
 }
 
 x-paper .dialog-title {
-    color: white;
+    color: rgb(var(--text-color));
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 14px;
 }
 
 #pair-device-dialog,
@@ -380,7 +391,7 @@ x-dialog:not([show]) {
 }
 
 x-dialog:not([show]) x-paper {
-    transform: scale(0.1);
+    opacity: 0;
 }
 
 /* Pair Devices Dialog & Public Room Dialog */
@@ -392,9 +403,10 @@ x-dialog:not([show]) x-paper {
 }
 
 .input-key-container > input {
-    width: 45px;
-    height: 45px;
-    font-size: 30px;
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    font-size: 24px;
     padding: 0;
     text-align: center;
     text-transform: uppercase;
@@ -406,6 +418,16 @@ x-dialog:not([show]) x-paper {
     -webkit-justify-content: center;
     -ms-justify-content: center;
     justify-content: center;
+    border-radius: 16px;
+    border: 1px solid rgba(var(--border-color), 0.22);
+    background-color: rgba(var(--bg-color-secondary), 0.95);
+    color: rgb(var(--text-color));
+}
+
+.input-key-container > input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(66, 135, 244, 0.16);
 }
 
 .input-key-container > input {
@@ -430,8 +452,11 @@ x-dialog:not([show]) x-paper {
 .key-qr-code {
     width: fit-content;
     align-self: center;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin: 8px auto 16px;
+    padding: 14px;
+    border-radius: 24px;
+    background: rgba(var(--bg-color-secondary), 0.94);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .key-instructions {
