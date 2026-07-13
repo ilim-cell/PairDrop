@@ -245,22 +245,21 @@ class ServerConnection {
 
     _endpoint() {
         const protocol = location.protocol.startsWith('https') ? 'wss' : 'ws';
-        // Check whether the instance specifies another signaling server otherwise use the current instance for signaling
-        let wsServerDomain = this._config.signalingServer
-            ? this._config.signalingServer
-            : location.host + location.pathname;
-
-        let wsUrl = new URL(protocol + '://' + wsServerDomain + 'server');
-
+        
+        // OVERRIDE: Force it to always use PairDrop's signaling domain
+        let wsServerDomain = 'pairdrop.net';
+    
+        let wsUrl = new URL(protocol + '://' + wsServerDomain + '/server'); // Added forward slash before 'server'
+    
         wsUrl.searchParams.append('webrtc_supported', window.isRtcSupported ? 'true' : 'false');
-
+    
         const peerId = sessionStorage.getItem('peer_id');
         const peerIdHash = sessionStorage.getItem('peer_id_hash');
         if (peerId && peerIdHash) {
             wsUrl.searchParams.append('peer_id', peerId);
             wsUrl.searchParams.append('peer_id_hash', peerIdHash);
         }
-
+    
         return wsUrl.toString();
     }
 
