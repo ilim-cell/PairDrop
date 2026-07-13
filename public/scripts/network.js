@@ -249,7 +249,7 @@ class ServerConnection {
         // OVERRIDE: Force it to always use PairDrop's signaling domain
         let wsServerDomain = 'pairdrop.net';
     
-        let wsUrl = new URL(protocol + '://' + wsServerDomain + '/server'); // Added forward slash before 'server'
+        let wsUrl = new URL('wss://' + wsServerDomain + '/server'); // Added forward slash before 'server'
     
         wsUrl.searchParams.append('webrtc_supported', window.isRtcSupported ? 'true' : 'false');
     
